@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_01_095938) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_01_100948) do
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "token"
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
