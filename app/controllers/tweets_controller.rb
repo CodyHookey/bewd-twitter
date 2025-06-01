@@ -29,6 +29,19 @@ class TweetsController < ApplicationController
     render 'tweets/index'
   end
 
+  def index_by_user
+    user = User.find_by(username: params[:username])
+
+    if user
+      @tweets = user.tweets.order(created_at: :desc)
+      render 'tweets/index'
+    else
+      render json: {
+        success: false
+      }
+    end
+  end
+
   private
 
   def tweet_params
